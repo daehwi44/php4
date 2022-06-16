@@ -1,5 +1,7 @@
 <?php
-include('functions.php');
+session_start();
+include("functions.php");
+check_session_id();
 
 // DB接続
 $pdo = connect_to_db();
@@ -46,7 +48,7 @@ foreach ($result as $record) {
 <body>
   <fieldset>
     <legend>登録済単語一覧（一覧画面）</legend>
-    <a href="tango_input.php">入力画面</a>
+    <a href="tango_menu.php">メニューに戻る</a>
     <table>
       <thead>
         <tr>

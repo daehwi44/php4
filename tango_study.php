@@ -1,4 +1,7 @@
 <?php
+session_start();
+include("functions.php");
+check_session_id();
 
 // 各種項目設定
 $dbn = 'mysql:dbname=gsacy_d02_01;charset=utf8mb4;port=3306;host=localhost';  //dbnameは対象のDBの名前
@@ -46,7 +49,7 @@ if ($status == false) {
     <div id="card-back"></div>
   </div>
   <div id="btn">次の単語へ</div>
-  <a href="tango_input.php">登録画面</a>
+  <a href="tango_menu.php">メニューに戻る</a>
 
   <script>
     // PHPのデータをJSに渡す

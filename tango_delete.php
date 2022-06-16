@@ -1,20 +1,19 @@
 <?php
-//var_dump($_GET);
-//exit();
-
+session_start();
 include("functions.php");
- 
+check_session_id();
+
 // データ受け取り
-$id= $_GET["id"];
+$id = $_GET["id"];
 
 // DB接続
-$pdo= connect_to_db();
+$pdo = connect_to_db();
 
 // SQL実行
 $sql = 'DELETE FROM tango_table WHERE id=:id';
 
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+$stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
 try {
   $status = $stmt->execute();

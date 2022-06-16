@@ -1,3 +1,9 @@
+<?php
+session_start();
+include("functions.php");
+check_session_id();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -11,8 +17,7 @@
   <form action="tango_create.php" method="POST">
     <fieldset>
       <legend>単語登録画面（入力画面）</legend>
-      <a href="tango_read.php">一覧画面</a>
-      <a href="tango_study.php">学習画面</a>
+      <a href="tango_menu.php">メニューに戻る</a>
       <div>
         単語: <input type="text" name="tango">
       </div>

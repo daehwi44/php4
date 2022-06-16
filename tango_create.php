@@ -1,11 +1,13 @@
 <?php
-//他の所から関数を呼び出す場合は一番上にまとめて書くといい
-include('functions.php');
+session_start();
+include("functions.php");
+check_session_id();
 
 if (
   !isset($_POST['tango']) || $_POST['tango'] == '' ||
   !isset($_POST['nihongo']) || $_POST['nihongo'] == ''
 ) {
+  echo json_encode(["error_msg" => "no input"]);
   exit('きちんと入力されていません');
 }
 

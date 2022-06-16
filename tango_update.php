@@ -1,5 +1,7 @@
 <?php
-include('functions.php');
+session_start();
+include("functions.php");
+check_session_id();
 
 if (
   !isset($_POST['tango']) || $_POST['tango'] == '' ||

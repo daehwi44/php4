@@ -1,3 +1,10 @@
+<?php
+session_start();
+include("functions.php");
+check_session_id();
+?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -20,6 +27,7 @@
     <a href="tango_input.php">単語新規登録</a>
     <a href="tango_read.php">登録単語一覧</a>
   </div>
+  <a href="tango_logout.php">logout</a>
 </body>
 
 </html>
