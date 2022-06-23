@@ -39,6 +39,7 @@ if (!$val) {
 } else {
   //ユーザー情報があった場合
   $_SESSION = array();                          //まずはSESSIONの中身を空っぽにする
+  $_SESSION['user_id'] = $val['id'];
   $_SESSION['session_id'] = session_id();
   $_SESSION['is_admin'] = $val['is_admin'];
   $_SESSION['username'] = $val['username'];

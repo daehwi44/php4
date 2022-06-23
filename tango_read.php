@@ -3,11 +3,15 @@ session_start();
 include("functions.php");
 check_session_id();
 
+$user_id = $_SESSION['user_id'];
+
 // DB接続
 $pdo = connect_to_db();
 
 // SQL作成&実行
-$sql = 'SELECT * FROM tango_table ORDER BY tango ASC';
+//LEFT OUTER JOINでtango_tableとresult_tableをtangoリストのIDで結合させる
+$sql = 'SELECT * FROM tango_table LEFT OUTER JOIN (SELECT tango_id, COUNT(id) AS know_count FROM know_table GROUP BY tango_id) AS result_table ON tango_table.id = result_table.tango_id ORDER BY tango ASC';
+
 $stmt = $pdo->prepare($sql);
 
 try {
@@ -24,6 +28,8 @@ foreach ($result as $record) {
     <tr>
       <td>{$record["tango"]}</td>
       <td>{$record["nihongo"]}</td>
+      <td><a href='know_create.php?user_id={$user_id}&tango_id={$record["id"]}'>しってる！</a></td>
+      <td><span>しってる！の数:{$record["know_count"]}</span></td>
       <td>
       <a href='tango_edit.php?id={$record["id"]}'>edit</a>
       </td>
@@ -59,7 +65,7 @@ foreach ($result as $record) {
         </tr>
       </thead>
       <tbody>
-        <!-- ここに<tr><td>deadline</td><td>todo</td><tr>の形でデータが入る -->
+        <!-- ここに<tr><td>deadline</td><td>tango</td><tr>の形でデータが入る -->
         <?= $output ?>
       </tbody>
     </table>
